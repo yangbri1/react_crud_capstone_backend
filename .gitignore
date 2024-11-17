@@ -1,0 +1,3 @@
+# include this file so environmental files DN get uploaded to Github
+node_modules/
+.env
