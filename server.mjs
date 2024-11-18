@@ -31,6 +31,9 @@ app.use(bodyParser.json({ extended: true }));           // parse out JSON data t
 /* routes */
 /* order routes in most specific to least specific */
 
+// include a catch all route at the bottom -- sequencing matters (so it will NOT interfere with other path's ...)
+
+
 // app.get('/', (req, res) => {
 //     // to see Express' req.params properties
 //     // console.log(req.params.name);
