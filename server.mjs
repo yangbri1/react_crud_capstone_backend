@@ -29,8 +29,15 @@ app.use(bodyParser.urlencoded({ extended: true }));     // parse out URL-encoded
 app.use(bodyParser.json({ extended: true }));           // parse out JSON data to req.body
 
 /* routes */
+/* order routes in most specific to least specific */
 
-
+// app.get('/', (req, res) => {
+//     // to see Express' req.params properties
+//     // console.log(req.params.name);
+//     // res.json(req.params.name);
+//     res.send(`did you see my bag💃🏻`);
+//     // res.send(req.params); // returns an empty obj {}
+// });
 
 
 // Express' app.listen() method starts server & tells app to listen on PORT for any incoming traffic
