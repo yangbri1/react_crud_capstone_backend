@@ -29,7 +29,8 @@ const animationSchema = new mongoose.Schema({
     },
     // schema field "ratings" must be of non-negative "Number" type ranging from [1-10] 
     ratings: {
-        type: Number,
+        type: Number,           // apparently to store float values "Number" type would suffice ...
+        // type: Decimal128,    // ... else use "Decimal128" (DN seem to be supported anymore)
         min: 1,
         max: 10,
         // Aside: {VALUE} in Mongoose will yield validated & failing value
@@ -71,38 +72,38 @@ const animationSchema = new mongoose.Schema({
 // schema indexing by "ratings" field in descending order (largest to smallest
 animationSchema.index({ratings: -1});
 
-// adding "score" static method to model -- every animation will have this feature available
-animationSchema.statics.score = function(){
+// adding "scoreIncluded" static method to model -- every animation will have this feature available
+animationSchema.statics.scoreIncluded = function(){
     // check if the animation has score (non-zero)
     return mongoose.model("Animation").find({ratings: { $gt: 0 }});
 }
 
-// defining schema static method of "original" to Mongoose model
-animationSchema.statics.original = function(){
+// defining schema static method of "labelOriginal" to Mongoose model
+animationSchema.statics.labelOriginal = function(){
     // look for all animations not originated from any previous source materials
     return mongoose.model("Animation").find({ original: { $eq: true } }); 
 }
 
-// defining schema static method of "unoriginal" to Mongoose model
-animationSchema.statics.unoriginal = function(){
+// defining schema static method of "labelUnoriginal" to Mongoose model
+animationSchema.statics.labelUnoriginal = function(){
     // look for all animations INDEED sourced from any materials
     return mongoose.model("Animation").find({ original: { $ne: true } }); 
 }
 
-// schema static method of "statusTBD" to Mongoose model
-animationSchema.statics.statusTBD = function(){
+// schema static method of "airingTBD" to Mongoose model
+animationSchema.statics.airingTBD = function(){
     // look for all animations with a status of "TBD" using .find() method 
     return mongoose.model("animation").find({ status: "TBD" }); 
 }
 
-// schema static method of "statusOngoing" to Mongoose model
-animationSchema.statics.statusOngoing = function(){
+// schema static method of "airingOngoing" to Mongoose model
+animationSchema.statics.airingOngoing = function(){
     // look for all animations with a status of "ONGOING" using .find() method 
     return mongoose.model("animation").find({ status: "ONGOING" }); 
 }
 
-// schema static method of "statusCompleted" to Mongoose model
-animationSchema.statics.statusCompleted = function(){
+// schema static method of "airingCompleted" to Mongoose model
+animationSchema.statics.airingCompleted = function(){
     // look for all animations with a "COMPLETED" status presented using .find() method 
     return mongoose.model("Animation").find({ status: { $eq: "COMPLETED" } }); // different syntax but same as above (rarely use $eq operator)
 }
