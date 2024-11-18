@@ -93,4 +93,4 @@ literaryWorkSchema.statics.genreAll = function(){
 // use mongoose.model() method in Mongoose module to generate a collection of a MongoDB database
 // compile literary work schema into the model for later use and export to "literaryWorkRoutes.mjs"
 // hereafter the "literayWorkSchema" is known by "Literary_Work"
-export default mongoose.model("Literary_Work", devilFruitSchema);
+export default mongoose.model("Literary_Work", literaryWorkSchema);
