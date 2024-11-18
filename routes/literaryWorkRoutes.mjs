@@ -66,7 +66,7 @@ router.get('/literary_work/:id', async (req, res) => {
         // search for a particular literary work in the database by it's "_id"
         const singleLiteraryWork = await Literary_Work.findById(req.params.id);
         // extract a single literary work's full info document in JSON string format to browser
-        res.json(singleDevilFruit);
+        res.json(singleLiteraryWork);
     } catch (err) {
         // catch any possible errors and return custom error code as well as message to client
         console.error(err);
@@ -80,7 +80,7 @@ router.get('/category/manga', async (req, res) => {
         // collect all "manga" pieces
         const category_manga = await Literary_Work.typeManga({});
         // yield all "manga" types
-        res.json(category_logia);
+        res.json(category_manga);
     } catch (err) {
         // prompts when any error is detected
         console.error(err);
@@ -103,7 +103,7 @@ router.get('/category/manhwa', async (req, res) => {
 });
 
 // find all "manhua" type Chinese works
-router.get('/category/manhwa', async (req, res) => {
+router.get('/category/mangua', async (req, res) => {
     try {
         // collect all "manhua" pieces
         const category_manhua = await Literary_Work.typeManhua({});
@@ -131,32 +131,32 @@ router.get('/status', async (req, res) => {
 });
 
 // seize literary works with serialization (redux so if URL extends for this general path it will still show/redirect to original path)
-// router.get('/serialized/*', async (req, res) => {
-//     try {
-//         // collect all "serialized" pieces
-//         const serialized_yes = await Literary_Work.serializedYes({});
-//         // yield all "serialized" types
-//         res.json(serialized_yes);
-//     } catch (err) {
-//         // prompts when any error is detected
-//         console.error(err);
-//         res.status(500).json({msg: "Internal Server Error - GET SERIALIZED"});
-//     }
-// });
+router.get('/serialized/*', async (req, res) => {
+    try {
+        // collect all "serialized" pieces
+        const serialized_yes = await Literary_Work.serializedYes({});
+        // yield all "serialized" types
+        res.json(serialized_yes);
+    } catch (err) {
+        // prompts when any error is detected
+        console.error(err);
+        res.status(500).json({msg: "Internal Server Error - GET SERIALIZED"});
+    }
+});
 
-// // pull literary works WITHOUT serialization (let's test above first before redux here ...)
-// router.get('/unserialized', async (req, res) => {
-//     try {
-//         // collect all "unserialized" pieces
-//         const serialized_no = await Literary_Work.serializedNo({});
-//         // yield all "serialized" types
-//         res.json(serialized_no);
-//     } catch (err) {
-//         // prompts when any error is detected
-//         console.error(err);
-//         res.status(500).json({msg: "Internal Server Error - GET UNSERIALIZED"});
-//     }
-// });
+// pull literary works WITHOUT serialization (let's test above first before redux here ...)
+router.get('/unserialized', async (req, res) => {
+    try {
+        // collect all "unserialized" pieces
+        const serialized_no = await Literary_Work.serializedNo({});
+        // yield all "serialized" types
+        res.json(serialized_no);
+    } catch (err) {
+        // prompts when any error is detected
+        console.error(err);
+        res.status(500).json({msg: "Internal Server Error - GET UNSERIALIZED"});
+    }
+});
 
 /* UPDATE */
 // access an existing literary work by their :id & update their information body
@@ -165,7 +165,7 @@ router.patch('/:id', async (req, res) => {
         /* Note: To use ANY Mongoose's methods, Mongoose must be connected to MongoDB which is here in "server.mjs" (connectDB() function invoked)
         this is because Mongoose is an Object Data Modeling (ODM) library for MongoDB */
         // utilize .findByIdAndUpdate() Mongoose method to 1) look for :id in req.params.id, 2) update data in req.body, 3) return updated data {new: true}
-        let updateLW = await Literary_Work.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        let updatedLW = await Literary_Work.findByIdAndUpdate(req.params.id, req.body, {new: true});
         
         // return results to client as JSON string
         res.json(updatedLW);

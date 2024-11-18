@@ -7,7 +7,8 @@ const literaryWorkSchema = new mongoose.Schema({
     title: {
         // schema property types
         type: String,
-        required: true
+        required: true,
+        unique: true        // unique property added so no duplicate titles 
     },
     // field "type" is required and has properties of ...
     type: {
@@ -53,16 +54,16 @@ const literaryWorkSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please give a brief description of the piece']
     },
-    themes: {
-        // type of array of Strings (multiple themes may be presented)
-        // type: [String]  // come back later -- Array of Strings DN seem to be working
-        type: String
-    },
+    // themes: {
+    //     // type of array of Strings (multiple themes may be presented)
+    //     // type: [String]  // come back later -- Array of Strings DN seem to be working
+    //     type: [String]
+    // },
     // schema field "serialized" showing if the piece is picked up by a publisher (under guise of editors)
-    // serialized: {
-    //     type: Boolean,
-    //     default: false
-    // }
+    serialized: {
+        type: Boolean,
+        default: false
+    }
 });
 
 // index literary works schema by "title" in ascending order
@@ -93,16 +94,16 @@ literaryWorkSchema.statics.statusAll = function(){
 }
 
 // defining schema static method of "serializedYes" to Mongoose model
-// literaryWorkSchema.statics.serializedYes = function(){
-//     // look for all literary works that are serialized using .find() method 
-//     return mongoose.model("Literary_Work").find({ serialized: true }); 
-// }
+literaryWorkSchema.statics.serializedYes = function(){
+    // look for all literary works that are serialized using .find() method 
+    return mongoose.model("Literary_Work").find({ serialized: true }); 
+}
 
-// // defining schema static method of "serializedNo" to Mongoose model
-// literaryWorkSchema.statics.serializedNo = function(){
-//     // look for all literary works that are NOT serialized 
-//     return mongoose.model("Literary_Work").find({ serialized: { $ne: true } });     // negating the negated works?
-// }
+// defining schema static method of "serializedNo" to Mongoose model
+literaryWorkSchema.statics.serializedNo = function(){
+    // look for all literary works that are NOT serialized 
+    return mongoose.model("Literary_Work").find({ serialized: { $ne: true } });     // negating the negated works?
+}
 
 // use mongoose.model() method in Mongoose module to generate a collection of a MongoDB database
 // compile literary work schema into the model for later use and export to "literaryWorkRoutes.mjs"
