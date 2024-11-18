@@ -35,6 +35,7 @@ const literaryWorkSchema = new mongoose.Schema({
             values: ['TBD', 'ONGOING', 'COMPLETED', 'ON HIATUS', 'DISCONTINUED'],
             message: `{VALUE} is unsupported`
         },
+        default: 'tbd',
         uppercase: true // schemaType option converting airing 'status' to uppercase before saving
     },
     // schema field "genre" of type "String" in array of Strings is required
@@ -52,9 +53,16 @@ const literaryWorkSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please give a brief description of the piece']
     },
-    theme: {
+    themes: {
+        // type of array of Strings (multiple themes may be presented)
+        // type: [String]  // come back later -- Array of Strings DN seem to be working
         type: String
-    }
+    },
+    // schema field "serialized" showing if the piece is picked up by a publisher (under guise of editors)
+    // serialized: {
+    //     type: Boolean,
+    //     default: false
+    // }
 });
 
 // index literary works schema by "title" in ascending order
@@ -84,11 +92,17 @@ literaryWorkSchema.statics.statusAll = function(){
     return mongoose.model("Literary_Work").find({ status: { $ne: null } }); // "" as value still shows all statuses
 }
 
-// defining schema static method of "genreAll" to Mongoose model
-literaryWorkSchema.statics.genreAll = function(){
-    // look for all literary works with genre presented using .find() method with $ne operator to make sure "genre" field is null (no String)
-    return mongoose.model("Literary_Work").find({ genre: { $ne: null } }); // "" as value still shows all statuses
-}
+// defining schema static method of "serializedYes" to Mongoose model
+// literaryWorkSchema.statics.serializedYes = function(){
+//     // look for all literary works that are serialized using .find() method 
+//     return mongoose.model("Literary_Work").find({ serialized: true }); 
+// }
+
+// // defining schema static method of "serializedNo" to Mongoose model
+// literaryWorkSchema.statics.serializedNo = function(){
+//     // look for all literary works that are NOT serialized 
+//     return mongoose.model("Literary_Work").find({ serialized: { $ne: true } });     // negating the negated works?
+// }
 
 // use mongoose.model() method in Mongoose module to generate a collection of a MongoDB database
 // compile literary work schema into the model for later use and export to "literaryWorkRoutes.mjs"

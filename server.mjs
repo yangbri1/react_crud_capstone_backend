@@ -8,7 +8,7 @@ import connectDB from './db/conn.mjs';
 
 // later will also bring routes to the brain "server.mjs" to be run 
 import animationRoutes from './routes/animationRoutes.mjs';
-import literaryWorkRoutes from './routes/literaryWorkRoutes.mjs';
+// import literaryWorkRoutes from './routes/literaryWorkRoutes.mjs';
 
 /* setting up */
 // unpack environmental variables from .env file here for later use
@@ -32,7 +32,7 @@ app.use(bodyParser.json({ extended: true }));           // parse out JSON data t
 /* routes */
 /* order routes in most specific to least specific */
 app.use('/animations', animationRoutes);     // incorporate animationRoutes into server
-app.use('/literary_works', literaryWorkRoutes);
+// app.use('/literary_works', literaryWorkRoutes);
 // include a catch all * route at the bottom -- sequencing matters (so it will NOT interfere with other path's ...)
 
 

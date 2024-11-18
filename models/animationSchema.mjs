@@ -1,6 +1,5 @@
 // import Mongoose to use built-in mogoose methods in creating animation schema
 import mongoose from 'mongoose';
-
 // crating a Mongoose schema for anime overview
 const animationSchema = new mongoose.Schema({
     // defining schema fields with their respective properties
