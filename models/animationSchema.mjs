@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 // crating a Mongoose schema for anime overview
 const animationSchema = new mongoose.Schema({
     // defining schema fields with their respective properties
-    title: {
+    name: {
         type: String,
-        required: [true, 'Please give a title'],    // configuring custom error message using array syntax
+        required: [true, 'Please give a name'],    // configuring custom error message using array syntax
         /* Note: MongoDB by default would create an unique ndex on "_id" field during collection creation
          "name" field is now an unique index alongside "_id" (Could be seen on MongoDB Compass) */
         unique: true     // setting "unique" property to true means there will be no duplicate names
@@ -40,7 +40,7 @@ const animationSchema = new mongoose.Schema({
         type: String,
         // enumeration showing possible airing status values
         enum: {
-            values: ['TBD', 'ONGOING', 'COMPLETE'],
+            values: ['TBD', 'ONGOING', 'COMPLETED'],
             message: `{VALUE} is unsupported`
         },
         uppercase: true // schemaType option converting airing 'status' to uppercase before saving
@@ -65,7 +65,7 @@ const animationSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-    // live adaptation field?
+    // live adaptation, studio fields?
 });
 
 // schema indexing by "ratings" field in descending order (largest to smallest
@@ -92,22 +92,22 @@ animationSchema.statics.unoriginal = function(){
 // schema static method of "statusTBD" to Mongoose model
 animationSchema.statics.statusTBD = function(){
     // look for all animations with a status of "TBD" using .find() method 
-    return mongoose.model("Character").find({ status: "TBD" }); 
+    return mongoose.model("animation").find({ status: "TBD" }); 
 }
 
 // schema static method of "statusOngoing" to Mongoose model
 animationSchema.statics.statusOngoing = function(){
     // look for all animations with a status of "ONGOING" using .find() method 
-    return mongoose.model("Character").find({ status: "ONGOING" }); 
+    return mongoose.model("animation").find({ status: "ONGOING" }); 
 }
 
-// schema static method of "statusComplete" to Mongoose model
-animationSchema.statics.statusComplete = function(){
-    // look for all characters with a wanted "DEAD" status presented using .find() method 
-    return mongoose.model("Animation").find({ status: { $eq: "COMPLETE" } }); // different syntax but same as above (rarely use $eq operator)
+// schema static method of "statusCompleted" to Mongoose model
+animationSchema.statics.statusCompleted = function(){
+    // look for all animations with a "COMPLETED" status presented using .find() method 
+    return mongoose.model("Animation").find({ status: { $eq: "COMPLETED" } }); // different syntax but same as above (rarely use $eq operator)
 }
 
 // calling mongoose.model() function makes a copy on "animationSchema" & Mongoose compiles it
 // export Mongoose model of key-value pair such that "Animation" refers to "animationSchema" 
 // Note: Elsewhere calling on "Animation" allows access to its fields with properties
-export default mongoose.model("Animation", characterSchema);
+export default mongoose.model("Animation", animationSchema);
