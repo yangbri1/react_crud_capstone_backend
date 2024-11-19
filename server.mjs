@@ -31,18 +31,18 @@ app.use(bodyParser.json({ extended: true }));           // parse out JSON data t
 
 /* routes */
 /* order routes in most specific to least specific */
-app.use('/animations', animationRoutes);     // incorporate animationRoutes into server
+app.use('/animations', animationRoutes);        // incorporate animationRoutes into server
 app.use('/literary_works', literaryWorkRoutes);
 // include a catch all * route at the bottom -- sequencing matters (so it will NOT interfere with other path's ...)
 
 
-app.get('/', (req, res) => {
-    // to see Express' req.params properties
-    // console.log(req.params.name);
-    // res.json(req.params.name);
-    res.send(`did you see my bag💃🏻`);
-    // res.send(req.params); // returns an empty obj {}
-});
+// app.get('/', (req, res) => {
+//     // to see Express' req.params properties
+//     // console.log(req.params.name);
+//     // res.json(req.params.name);
+//     res.send(`did you see my bag💃🏻`);
+//     // res.send(req.params); // returns an empty obj {}
+// });
 
 
 // Express' app.listen() method starts server & tells app to listen on PORT for any incoming traffic
