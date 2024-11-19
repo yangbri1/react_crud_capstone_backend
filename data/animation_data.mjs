@@ -110,4 +110,24 @@ export const animation = [
         plot: "In a world full of magic, Mash lead a life free of any inkling of magical power. In the face of adversary, he uses his muscles to compensate for his lack of magical predesposition.",
         original: false
     },
+    {
+        name: "Blue Lock vs. U-20 Japan",
+        year: 2024,
+        format: "TV",
+        ratings: 6.68,
+        status: "ONGOING",
+        genre: "SPORTS",
+        plot: "Isagi Yoruichi on his quest to play to represent Japan U-20 team finds himself in the middle of competing against his fellow egoistical teammates.",
+        original: false
+    },
+    {
+        name: "One Punch Man 3",
+        year: 2024,
+        format: "PV",
+        ratings: 5,
+        status: "TBD",
+        genre: "COMEDY",
+        plot: "Saitama is just your average C-Class hero, little did he know the universe to be in danger with the Monster Association head honcho's quest to obliterate every hero ",
+        original: false
+    },
 ]

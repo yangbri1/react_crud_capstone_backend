@@ -16,7 +16,7 @@ const router = express.Router();
 // 4. wrap in try-catch to handle any extraneous errors
 
 /* CREATE */
-// place a new devil fruit to MongoDB Literary_Work collection
+// place a new document to MongoDB Literary_Work collection
 router.post('/', async (req, res) => {
     // try-catch block to catch any potential errors
     try {
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
         // invoke .save() method to save newly created document (literary work) to database
         await newLiterary_Work.save();
 
-        // return all devil fruits in JSON string format to client
+        // return all literary works in JSON string format to client
         res.json({});
         
     } catch (err) {
@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
         // Aside: .find() method could look for documents fulfilling a single-field or compound fields
         const allLiterary_Work = await Literary_Work.find({});
         
-        // return all devil fruits in JSON string format to client
+        // return all lterary works in JSON string format to client
         res.json(allLiterary_Work);
         
     } catch (err) {
@@ -186,7 +186,7 @@ router.delete('/:id', async (req, res) => {
         // find literary work by requested :id, delete & cache it to variable "deletedLW"
         let deletedLW = await Literary_Work.findByIdAndDelete(req.params.id);
 
-        // call forth the deleted devil fruit from the database
+        // call forth the deleted literary work from the database
         res.json(deletedLW);
         
     } catch (err) {

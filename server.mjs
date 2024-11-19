@@ -34,13 +34,15 @@ app.use(bodyParser.json({ extended: true }));           // parse out JSON data t
 app.use('/animations', animationRoutes);        // incorporate animationRoutes into server
 app.use('/literary_works', literaryWorkRoutes);
 // include a catch all * route at the bottom -- sequencing matters (so it will NOT interfere with other path's ...)
-
+app.get('/*', (req, res) => {
+    res.send("You've done goof -- there ain't anything here 404");
+});
 
 // app.get('/', (req, res) => {
 //     // to see Express' req.params properties
 //     // console.log(req.params.name);
 //     // res.json(req.params.name);
-//     res.send(`did you see my bag💃🏻`);
+//     res.send(`hello from the other side`);
 //     // res.send(req.params); // returns an empty obj {}
 // });
 

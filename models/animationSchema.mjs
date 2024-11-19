@@ -34,7 +34,8 @@ const animationSchema = new mongoose.Schema({
         min: 1,
         max: 10,
         // Aside: {VALUE} in Mongoose will yield validated & failing value
-        message: "Rating must be between [1 - 10], received {VALUE}" // setting custom validator error message using object syntax
+        message: "Rating must be between [1 - 10], received {VALUE}", // setting custom validator error message using object syntax
+        default: 0
     },
     // schema field "status" of type "String" in array of Strings is required
     status: {

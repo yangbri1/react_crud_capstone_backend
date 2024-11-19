@@ -1,4 +1,4 @@
-// Literary works database
+// Literary works example dataset
 export const literary_work = [
     {
         title: "Solo Leveling",

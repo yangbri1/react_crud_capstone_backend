@@ -82,7 +82,7 @@ router.get('/animation/:id', async (req, res) => {
 router.get('/scores', async (req, res) => {
     try {
         // collect all of the animations with ratings
-        let scores = await Character.scoreIncluded({});
+        let scores = await Animation.scoreIncluded({});
         // print out cumulative scores
         res.json(scores);
     } catch (err) {
@@ -187,10 +187,10 @@ router.patch('/:id', async (req, res) => {
 // access an animation by their request parameters :id & permanently remove animation from MongoDB database
 router.delete('/:id', async (req, res) => {
     try {
-        // find character by requested :id, delete & cache it to variable "deletedCharacter"
-        let deletedAnimation = await Character.findByIdAndDelete(req.params.id);
+        // find Animation by requested :id, delete & cache it to variable "deletedAnimation"
+        let deletedAnimation = await Animation.findByIdAndDelete(req.params.id);
 
-        // call forth the deleted character from the database -- do not need to return if not wanted
+        // call forth the deleted Animation from the database -- do not need to return if not wanted
         res.json(deletedAnimation);
         
     } catch (err) {
