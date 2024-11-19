@@ -10,6 +10,9 @@ import connectDB from './db/conn.mjs';
 import animationRoutes from './routes/animationRoutes.mjs';
 import literaryWorkRoutes from './routes/literaryWorkRoutes.mjs';
 
+// import morgan 3rd party middleware
+import morgan from 'morgan';
+
 /* setting up */
 // unpack environmental variables from .env file here for later use
 // Note: This should be before PORT (sequencing matters) otw PORT will direct to 3001
@@ -28,6 +31,11 @@ connectDB();
 /* middleware functions */
 app.use(bodyParser.urlencoded({ extended: true }));     // parse out URL-encoded data from path URL to access data in req.body
 app.use(bodyParser.json({ extended: true }));           // parse out JSON data to req.body
+
+/* Morgan middleware built on top of Node.js (like Express), console.log() out HTTP requests onto terminal in the selected 
+"tiny" format: : 1) HTTP Request Method, 2) Path URL, 3) Response's Content Length, 4) Response Time */
+// Aside: Some people also use Winston alongside Morgan to logs into a file  -- placed before any custom error handlers
+app.use(morgan('tiny'));
 
 /* routes */
 /* order routes in most specific to least specific */
