@@ -6,8 +6,10 @@ const animationSchema = new mongoose.Schema({
     // defining schema fields with their respective properties
     name: {
         type: String,
-        required: [true, 'Please give a name'],    // configuring custom error message using array syntax
-        /* Note: MongoDB by default would create an unique ndex on "_id" field during collection creation
+        msg: 'Please give a name',
+        required: true,      // separate out msg & required to see if can fix seeding function
+        // required: [true, 'Please give a name'],    // configuring custom error message using array syntax
+        /* Note: MongoDB by default would create an unique index on "_id" field during collection creation
          "name" field is now an unique index alongside "_id" (Could be seen on MongoDB Compass) */
         unique: true     // setting "unique" property to true means there will be no duplicate names
     },
@@ -35,7 +37,7 @@ const animationSchema = new mongoose.Schema({
         max: 10,
         // Aside: {VALUE} in Mongoose will yield validated & failing value
         message: "Rating must be between [1 - 10], received {VALUE}", // setting custom validator error message using object syntax
-        default: 0
+        // default: 0   // 0 is outside of the threshold set for "ratings" schema field -- disallowed
     },
     // schema field "status" of type "String" in array of Strings is required
     status: {
@@ -60,7 +62,9 @@ const animationSchema = new mongoose.Schema({
     // schema field "plot" of type "String" with a "required" innate property
     plot: {
         type: String,
-        required: [true, 'Please give a brief description of the piece']
+        // required: [true, 'Please give a brief description of the piece']
+        msg: 'Please give a brief description of the piece',
+        required: true
     },
     // schema field "original" of type "Boolean" shows whether or not an animation was derived from any source material
     original: {
@@ -108,6 +112,7 @@ animationSchema.statics.airingCompleted = function(){
     // look for all animations with a "COMPLETED" status presented using .find() method 
     return mongoose.model("Animation").find({ status: { $eq: "COMPLETED" } }); // different syntax but same as above (rarely use $eq operator)
 }
+
 
 // calling mongoose.model() function makes a copy on "animationSchema" & Mongoose compiles it
 // export Mongoose model of key-value pair such that "Animation" refers to "animationSchema" 

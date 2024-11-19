@@ -56,8 +56,8 @@ export const animation = [
         format: "Movie",
         ratings: 8.83,
         status: "COMPLETED",
-        genre: "",
-        plot: " a bustling life in the city while a boy wishes to find peace in his hectic life away from the stresses of urban culture. Bounded by a red ribbon of fate.",
+        genre: "ROMANCE",
+        plot: "...a bustling life in the city while a boy wishes to find peace in his hectic life away from the stresses of urban culture. Bounded by a red ribbon of fate.",
         original: true
     },
     {
@@ -131,3 +131,5 @@ export const animation = [
         original: false
     },
 ]
+
+export default { animation };

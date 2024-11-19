@@ -2,6 +2,9 @@
 import express from 'express';
 import Animation from '../models/animationSchema.mjs';
 
+// import seeding function to populate MongoDB db
+import seedingInProgress from '../controllers/seed.mjs'
+
 // initialize Express' Router instance
 const router = express.Router();
 
@@ -199,5 +202,9 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({msg: "Internal Server Error - DELETE"});
     }
 });
+
+// incorporate seeding function to animation 
+// router.get('/seed', seedingInProgress.seedDB);
+// router.route('/seed').get(seedingInProgress.seedDB);
 
 export default router;
