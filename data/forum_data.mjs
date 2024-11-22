@@ -4,7 +4,7 @@ export const forum = [
         heading: "You WOT mate",
         urgency: 420,
         message: "This bug needs some immediate fix ...",
-        username: "potscentral",
+        signed: "potscentral",
         human: false
     },
     {
@@ -27,6 +27,13 @@ export const forum = [
         message: "Follow me for follow back, check my profile -- we sell gpss",
         signed: "YourFriendlyBotter",
         human: false
+    },
+    {
+        heading: "All about the goodies",
+        urgency: 7000,
+        message: "Please add a special event for the listed holidays below ...",
+        signed: "ChaPaBa",
+        human: true
     }
 ];
 

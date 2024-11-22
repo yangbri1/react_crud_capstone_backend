@@ -9,6 +9,7 @@ import connectDB from './db/conn.mjs';
 // later will also bring routes to the brain "server.mjs" to be run 
 import animationRoutes from './routes/animationRoutes.mjs';
 import literaryWorkRoutes from './routes/literaryWorkRoutes.mjs';
+import forumRoutes from './routes/forumRoutes.mjs';
 
 // import morgan 3rd party middleware
 import morgan from 'morgan';
@@ -46,10 +47,12 @@ app.use(cors());
 /* routes */
 /* order routes in most specific to least specific */
 app.use('/animations', animationRoutes);        // incorporate animationRoutes into server
-app.use('/literary_works', literaryWorkRoutes);
+app.use('/literary_works', literaryWorkRoutes); // literary_works endpoint for all literaryWorkRoutes
+app.use('/forums', forumRoutes);                // set up forumRoutes to /forums endpoint
+
 // include a catch all * route at the bottom -- sequencing matters (so it will NOT interfere with other path's ...)
 app.get('/*', (req, res) => {
-    res.send("You've done goof -- there ain't anything here 404");
+    res.send("You've done goof -- there ain't anything here 404 (client-side error)");
 });
 
 // app.get('/', (req, res) => {

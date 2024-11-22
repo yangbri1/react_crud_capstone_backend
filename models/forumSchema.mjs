@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const forumSchema = new mongooose.Schema({
+const forumSchema = new mongoose.Schema({
     heading: {
         type: String,
         msg: 'Please give a heading',
