@@ -204,6 +204,9 @@ router.delete('/:id', async (req, res) => {
 });
 
 // incorporate seeding function to animation 
+// @route:  GET animations/seed
+// @desc:   Seed "animations" collection with dataset 
+// @access: Public
 // router.get('/seed', seedingInProgress.seedDB);
 // router.route('/seed').get(seedingInProgress.seedDB);
 

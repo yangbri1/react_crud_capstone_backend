@@ -13,6 +13,9 @@ import literaryWorkRoutes from './routes/literaryWorkRoutes.mjs';
 // import morgan 3rd party middleware
 import morgan from 'morgan';
 
+/* IMPORTANT: Need this library in order to connection front-end (React) to back-end (here) */
+import cors from 'cors';
+
 /* setting up */
 // unpack environmental variables from .env file here for later use
 // Note: This should be before PORT (sequencing matters) otw PORT will direct to 3001
@@ -36,6 +39,9 @@ app.use(bodyParser.json({ extended: true }));           // parse out JSON data t
 "tiny" format: : 1) HTTP Request Method, 2) Path URL, 3) Response's Content Length, 4) Response Time */
 // Aside: Some people also use Winston alongside Morgan to logs into a file  -- placed before any custom error handlers
 app.use(morgan('tiny'));
+
+// connecting FE to BE
+app.use(cors());
 
 /* routes */
 /* order routes in most specific to least specific */

@@ -1,4 +1,4 @@
-// Animation database
+// Animation dataset
 export const animation = [
     {
         name: "Yuri!!! on Ice",

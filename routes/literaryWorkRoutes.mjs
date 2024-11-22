@@ -65,14 +65,29 @@ router.get('/literary_work/:id', async (req, res) => {
     try {
         // search for a particular literary work in the database by it's "_id"
         const singleLiteraryWork = await Literary_Work.findById(req.params.id);
+        // const singleLiteraryWork = await Literary_Work.findOne({ title: req.params.id});
         // extract a single literary work's full info document in JSON string format to browser
         res.json(singleLiteraryWork);
     } catch (err) {
         // catch any possible errors and return custom error code as well as message to client
         console.error(err);
-        res.status(500).json({msg: "Internal Server Error - GET Literary Work (singular)"});
+        res.status(500).json({msg: "Internal Server Error - GET Literary Work (singular :id)"});
     }
 });
+
+// grab a literary work document by its *unique* (validation rule set in respective schema) "title"
+// router.get('/title/:title', async (req, res) => {
+//     try {
+//         // search for a particular literary work in the database by it's "title"
+//         const singleLiteraryWork = await Literary_Work.findOne({ title: req.params.title});
+//         // extract a single literary work's full info document in JSON string format to browser
+//         res.json(singleLiteraryWork);
+//     } catch (err) {
+//         // catch any possible errors and return custom error code as well as message to client
+//         console.error(err);
+//         res.status(500).json({msg: "Internal Server Error - GET Literary Work (singular :title)"});
+//     }
+// });
 
 // find all "manga" type Japanese works
 router.get('/category/manga', async (req, res) => {
