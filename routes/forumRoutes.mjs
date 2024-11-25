@@ -106,7 +106,7 @@ router.get('/verify', async (req, res) => {
 
 /* UPDATE (.patch() works too -- partial change) */
 // access an existing forum message by their :id & update their information body
-router.put('/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         /* Note: To use ANY Mongoose's methods, Mongoose must be connected to MongoDB which is here in "server.mjs" (connectDB() function invoked)
         this is because Mongoose is an Object Data Modeling (ODM) library for MongoDB */

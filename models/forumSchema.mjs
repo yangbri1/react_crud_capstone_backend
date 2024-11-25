@@ -9,9 +9,10 @@ const forumSchema = new mongoose.Schema({
     },
     urgency: {
         type: Number,
-        msg: 'Rate the level of urgency from 0(not urgent) - 9000(earth-shatteringly so), received {VALUE}',
-        min: 0,
+        msg: 'Rate the level of urgency from 1(not urgent) - 9000(earth-shatteringly so), received {VALUE}',
+        min: 1,
         max: 9000,
+        default: 1,
         required: true
     },
     message: {
@@ -21,7 +22,8 @@ const forumSchema = new mongoose.Schema({
     },
     signed: {
         type: String,
-        default: 'Gimme UR username'
+        default: 'Beep Boop I A.M. a R.O.B.O.T',
+        msg: "gimme your name"
     },
     human: {
         type: Boolean,
