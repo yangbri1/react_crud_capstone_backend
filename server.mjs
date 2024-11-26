@@ -17,6 +17,9 @@ import morgan from 'morgan';
 /* IMPORTANT: Need this library in order to connection front-end (React) to back-end (here) */
 import cors from 'cors';
 
+// using Cloudinary cloud services to store images --- MongoDB & Mongoose technically does not store image directly -- need to reference or embed
+import {v2 as cloudinary } from 'cloudinary';
+
 /* setting up */
 // unpack environmental variables from .env file here for later use
 // Note: This should be before PORT (sequencing matters) otw PORT will direct to 3001
@@ -25,6 +28,18 @@ dotenv.config();
 const app = express();
 // declare PORT to either be from environmental variable or default to 3001 -- dynamically adapt to different environments (ports too)
 let PORT = process.env.PORT || 3001;
+
+/* configure Cloudinary for use */
+cloudinary.config({
+    cloud_name: 'derpkk9is',
+    // accessing env variables Cloudinary's api_key & api_secret
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+(async function () {
+    const results = await cloudinary.uploader.upload()
+})
 
 /* DB connection */
 // invoke imported connectDB() function to connect to MongoDB

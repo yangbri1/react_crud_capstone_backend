@@ -70,6 +70,10 @@ const animationSchema = new mongoose.Schema({
     original: {
         type: Boolean,
         default: false
+    },
+    imgURL: {
+        type: String,
+        required: true
     }
     // live adaptation, studio fields?
 });
