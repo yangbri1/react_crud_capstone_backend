@@ -37,9 +37,6 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-(async function () {
-    const results = await cloudinary.uploader.upload()
-})
 
 /* DB connection */
 // invoke imported connectDB() function to connect to MongoDB
