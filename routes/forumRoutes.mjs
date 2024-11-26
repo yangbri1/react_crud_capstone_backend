@@ -90,17 +90,31 @@ router.get('/priority/low', async (req, res) => {
     }
 });
 
-// find all non-validated (possibly spam bot / need additional verification by human) messages
-router.get('/verify', async (req, res) => {
+// find all verified messages (human)
+router.get('/verified', async (req, res) => {
     try {
-        // collect all messages not passing captcha
-        const verify_again = await Forum.robots({});
-        // yield all suspicious comments
-        res.json(verify_again);
+        // collect all messages passing captcha
+        const verified_msg = await Forum.humans({});
+        // yield all comments with a human touch
+        res.json(verified_msg);
     } catch (err) {
         // prompts when any error is detected
         console.error(err);
-        res.status(500).json({msg: "Internal Server Error - GET Verify"});
+        res.status(500).json({msg: "Internal Server Error - GET Verified"});
+    }
+});
+
+// find all non-validated (possibly spam bot / need additional verification by human) messages
+router.get('/unverified', async (req, res) => {
+    try {
+        // collect all messages not passing captcha
+        const unverified_msg = await Forum.robots({});
+        // yield all suspicious comments
+        res.json(unverified_msg);
+    } catch (err) {
+        // prompts when any error is detected
+        console.error(err);
+        res.status(500).json({msg: "Internal Server Error - GET Unverified"});
     }
 });
 

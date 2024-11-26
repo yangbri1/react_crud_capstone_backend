@@ -48,6 +48,12 @@ forumSchema.statics.urgencyLow = function(){
     return mongoose.model("Forum").find({urgency: { $lt: 4500}});
 }
 
+// defining schema static method "humans" to Mongoose model
+forumSchema.statics.humans = function(){
+    // return all posts from verified, humane ones
+    return mongoose.model("Forum").find({human: true });
+}
+
 // defining schema static method "robots" to Mongoose model
 forumSchema.statics.robots = function(){
     // return all posts from unverified, Android botsss

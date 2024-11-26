@@ -90,13 +90,14 @@ literaryWorkSchema.statics.typeManhua = function(){
 // defining schema static method of "statusAll" to Mongoose model
 literaryWorkSchema.statics.statusAll = function(){
     // look for all literary works with a viable status presented using .find() method with $ne operator to make sure "status" field is null (no String)
-    return mongoose.model("Literary_Work").find({ status: { $ne: null } }); // "" as value still shows all statuses
+    // return mongoose.model("Literary_Work").find({ status: { $ne: null } }); // "" as value still shows all statuses
+    return mongoose.model("Literary_Work").find({ status: { $ne: "TBD" } });    // find all literary works with a defined status
 }
 
 // defining schema static method of "serializedYes" to Mongoose model
 literaryWorkSchema.statics.serializedYes = function(){
     // look for all literary works that are serialized using .find() method 
-    return mongoose.model("Literary_Work").find({ serialized: true }); 
+    return mongoose.model("Literary_Work").find({ serialized: { $eq: true }}); 
 }
 
 // defining schema static method of "serializedNo" to Mongoose model

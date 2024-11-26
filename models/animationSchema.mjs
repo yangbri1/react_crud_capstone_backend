@@ -98,13 +98,13 @@ animationSchema.statics.labelUnoriginal = function(){
 // schema static method of "airingTBD" to Mongoose model
 animationSchema.statics.airingTBD = function(){
     // look for all animations with a status of "TBD" using .find() method 
-    return mongoose.model("animation").find({ status: "TBD" }); 
+    return mongoose.model("Animation").find({ status: { $eq: "TBD" }}); 
 }
 
 // schema static method of "airingOngoing" to Mongoose model
 animationSchema.statics.airingOngoing = function(){
     // look for all animations with a status of "ONGOING" using .find() method 
-    return mongoose.model("animation").find({ status: "ONGOING" }); 
+    return mongoose.model("Animation").find({ status: { $eq: "ONGOING" }}); 
 }
 
 // schema static method of "airingCompleted" to Mongoose model

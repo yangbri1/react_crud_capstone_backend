@@ -1,4 +1,4 @@
-// datset for "Forum" collection
+// datset for "Forum" collection -- incomplete as does NOT quite fit the genre of the rest
 export const forum = [
     {
         heading: "You WOT mate",

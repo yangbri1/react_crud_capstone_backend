@@ -118,7 +118,7 @@ router.get('/category/manhwa', async (req, res) => {
 });
 
 // find all "manhua" type Chinese works
-router.get('/category/mangua', async (req, res) => {
+router.get('/category/manhua', async (req, res) => {
     try {
         // collect all "manhua" pieces
         const category_manhua = await Literary_Work.typeManhua({});
@@ -146,7 +146,7 @@ router.get('/status', async (req, res) => {
 });
 
 // seize literary works with serialization (redux so if URL extends for this general path it will still show/redirect to original path)
-router.get('/serialized/*', async (req, res) => {
+router.get('/serialized', async (req, res) => {
     try {
         // collect all "serialized" pieces
         const serialized_yes = await Literary_Work.serializedYes({});
