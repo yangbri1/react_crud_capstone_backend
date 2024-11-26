@@ -3,7 +3,7 @@ import express from 'express';
 import Animation from '../models/animationSchema.mjs';
 
 // import seeding function to populate MongoDB db
-import seedingInProgress from '../controllers/seed.mjs'
+// import seedingInProgress from '../controllers/seed.mjs'
 
 // initialize Express' Router instance
 const router = express.Router();

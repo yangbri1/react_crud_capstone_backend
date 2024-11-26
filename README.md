@@ -28,7 +28,11 @@
    > _Access your mongoURI from MongoDB Compass or MongoDB website_
 
 5. Download Thunder-Client, Postman, or any other API testing tool
-6. Try out listed path URL's below for Create (post), Read (get), Update (patch, put), Delete (delete) in Thunder-Client
+6. Run commands
+    ```
+    npm start
+    ```
+7. Try out listed path URL's below for Create (post), Read (get), Update (patch, put), Delete (delete) in Thunder-Client
 
 **<u>Note</u>**: *Fork if want to add own changes & push to Github later*
 
